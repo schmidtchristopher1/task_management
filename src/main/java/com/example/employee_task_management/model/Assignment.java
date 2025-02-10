@@ -1,4 +1,4 @@
-package model;
+package com.example.employee_task_management.model;
 
 import jakarta.persistence.*;
 import lombok.*;

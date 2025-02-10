@@ -1,7 +1,7 @@
-package services;
+package com.example.employee_task_management.services;
 
-import model.Task;
-import repository.TaskRepository;
+import com.example.employee_task_management.model.Task;
+import com.example.employee_task_management.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

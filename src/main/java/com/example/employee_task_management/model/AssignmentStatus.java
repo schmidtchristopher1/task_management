@@ -1,4 +1,4 @@
-package model;
+package com.example.employee_task_management.model;
 
 public enum AssignmentStatus {
     PENDING,

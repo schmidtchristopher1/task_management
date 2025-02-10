@@ -1,7 +1,7 @@
-package services;
+package com.example.employee_task_management.services;
 
-import model.Assignment;
-import repository.AssignmentRepository;
+import com.example.employee_task_management.model.Assignment;
+import com.example.employee_task_management.repository.AssignmentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
