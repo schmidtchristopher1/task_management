@@ -1,4 +1,4 @@
-package com.example.employee_task_management.services;
+package com.example.employee_task_management.service;
 
 import com.example.employee_task_management.model.Assignment;
 import com.example.employee_task_management.repository.AssignmentRepository;
