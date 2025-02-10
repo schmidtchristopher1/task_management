@@ -51,7 +51,7 @@ CREATE TABLE assignments
     id          BIGINT AUTO_INCREMENT PRIMARY KEY,
     employee_id BIGINT NOT NULL,
     task_id     BIGINT NOT NULL,
-    status      ENUM ('Pending', 'In Progress', 'Completed') DEFAULT 'Pending',
+    status      ENUM ('PENDING', 'IN_PROGRESS', 'COMPLETED') DEFAULT 'PENDING',
     FOREIGN KEY (employee_id) REFERENCES employees (id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (task_id) REFERENCES tasks (id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
@@ -94,11 +94,11 @@ VALUES ('Develop API', 'Create RESTful APIs for the project', '2024-02-10'),
 
 -- Assign Employees to Tasks
 INSERT INTO assignments (employee_id, task_id, status)
-VALUES (1, 1, 'In Progress'), -- Alice is working on the API
-       (2, 1, 'Pending'),     -- Bob is also assigned but hasn't started
-       (3, 2, 'Pending'),     -- Charlie will test the application
-       (1, 3, 'Pending'),     -- Alice will write documentation
-       (2, 3, 'Completed');
+VALUES (1, 1, 'IN_PROGRESS'), -- Alice is working on the API
+       (2, 1, 'PENDING'),     -- Bob is also assigned but hasn't started
+       (3, 2, 'PENDING'),     -- Charlie will test the application
+       (1, 3, 'PENDING'),     -- Alice will write documentation
+       (2, 3, 'COMPLETED');
 -- Bob finished documentation
 
 -- Insert sample Comments on Tasks
