@@ -2,19 +2,24 @@
 CREATE DATABASE IF NOT EXISTS employee_tasks_db;
 USE employee_tasks_db;
 
--- Drop tables if they exist
-DROP TABLE IF EXISTS assignments;
+-- Drop tables if they exist (drop in correct dependency order)
 DROP TABLE IF EXISTS comments;
+DROP TABLE IF EXISTS assignments;
 DROP TABLE IF EXISTS tasks;
 DROP TABLE IF EXISTS employees;
 DROP TABLE IF EXISTS departments;
+
+-- Ensure storage engine is InnoDB for foreign key support
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- Create Departments table
 CREATE TABLE departments
 (
     id   BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
-);
+    name VARCHAR(255) NOT NULL UNIQUE
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_unicode_ci;
 
 -- Create Employees table
 CREATE TABLE employees
@@ -24,8 +29,10 @@ CREATE TABLE employees
     email         VARCHAR(255) UNIQUE NOT NULL,
     position      VARCHAR(100)        NOT NULL,
     department_id BIGINT,
-    FOREIGN KEY (department_id) REFERENCES departments (id)
-);
+    FOREIGN KEY (department_id) REFERENCES departments (id) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_unicode_ci;
 
 -- Create Tasks table
 CREATE TABLE tasks
@@ -34,7 +41,9 @@ CREATE TABLE tasks
     title       VARCHAR(255) NOT NULL,
     description TEXT,
     deadline    DATE         NOT NULL
-);
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_unicode_ci;
 
 -- Create Assignments table (Many-to-Many: Employees <-> Tasks)
 CREATE TABLE assignments
@@ -43,9 +52,11 @@ CREATE TABLE assignments
     employee_id BIGINT NOT NULL,
     task_id     BIGINT NOT NULL,
     status      ENUM ('Pending', 'In Progress', 'Completed') DEFAULT 'Pending',
-    FOREIGN KEY (employee_id) REFERENCES employees (id),
-    FOREIGN KEY (task_id) REFERENCES tasks (id)
-);
+    FOREIGN KEY (employee_id) REFERENCES employees (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (task_id) REFERENCES tasks (id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_unicode_ci;
 
 -- Create Comments table (1:N, Employees comment on Tasks)
 CREATE TABLE comments
@@ -55,9 +66,13 @@ CREATE TABLE comments
     employee_id BIGINT NOT NULL,
     content     TEXT   NOT NULL,
     created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (task_id) REFERENCES tasks (id),
-    FOREIGN KEY (employee_id) REFERENCES employees (id)
-);
+    FOREIGN KEY (task_id) REFERENCES tasks (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (employee_id) REFERENCES employees (id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_unicode_ci;
+
+SET FOREIGN_KEY_CHECKS = 1;
 
 -- Insert sample Departments
 INSERT INTO departments (name)
