@@ -1,7 +1,7 @@
 package com.example.employee_task_management.controller;
 
 import com.example.employee_task_management.model.Task;
-import com.example.employee_task_management.services.TaskService;
+import com.example.employee_task_management.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
