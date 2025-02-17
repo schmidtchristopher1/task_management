@@ -27,12 +27,12 @@ public class TaskController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public Task createTask(@RequestBody Task task) {
         return taskService.saveTask(task);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task updatedTask) {
         return taskService.getTaskById(id)
                 .map(existingTask -> {
@@ -44,7 +44,7 @@ public class TaskController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
         if (taskService.getTaskById(id).isPresent()) {
             taskService.deleteTask(id);
