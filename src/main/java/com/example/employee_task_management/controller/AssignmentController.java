@@ -27,12 +27,12 @@ public class AssignmentController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public Assignment createAssignment(@RequestBody Assignment assignment) {
         return assignmentService.saveAssignment(assignment);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Assignment> updateAssignment(@PathVariable Long id, @RequestBody Assignment updatedAssignment) {
         return assignmentService.getAssignmentById(id)
                 .map(existingAssignment -> {
@@ -42,7 +42,7 @@ public class AssignmentController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteAssignment(@PathVariable Long id) {
         if (assignmentService.getAssignmentById(id).isPresent()) {
             assignmentService.deleteAssignment(id);
