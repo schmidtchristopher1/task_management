@@ -17,15 +17,16 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "title")
     private String title;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "description")
     private String description;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "deadline")
     private String deadline;
 
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
