@@ -14,6 +14,7 @@ public class Assignment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @ManyToOne
@@ -27,5 +28,6 @@ public class Assignment {
     private Task task;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     private AssignmentStatus status;
 }
