@@ -14,13 +14,13 @@ public class SwaggerConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                .title("Employee Task Management API")
-                .description("API documentation for managing employees and tasks")
-                .version("1.0"))
+                        .title("Employee Task Management API")
+                        .description("API documentation for managing employees and tasks")
+                        .version("1.0"))
                 .addSecurityItem(new SecurityRequirement().addList("basicAuth"))
                 .components(new io.swagger.v3.oas.models.Components()
-                .addSecuritySchemes("basicAuth", new SecurityScheme()
-                .type(SecurityScheme.Type.HTTP)
-                .scheme("basic")));
+                        .addSecuritySchemes("basicAuth", new SecurityScheme()
+                                .type(SecurityScheme.Type.HTTP)
+                                .scheme("basic")));
     }
 }
