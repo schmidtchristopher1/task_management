@@ -33,7 +33,8 @@ public class AssignmentController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Assignment> updateAssignment(@PathVariable Long id, @RequestBody Assignment updatedAssignment) {
+    public ResponseEntity<Assignment> updateAssignment(@PathVariable Long id,
+            @RequestBody Assignment updatedAssignment) {
         return assignmentService.getAssignmentById(id)
                 .map(existingAssignment -> {
                     existingAssignment.setStatus(updatedAssignment.getStatus());
