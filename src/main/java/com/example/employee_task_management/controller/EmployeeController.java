@@ -39,6 +39,10 @@ public class EmployeeController {
                     existingEmployee.setName(updatedEmployee.getName());
                     existingEmployee.setEmail(updatedEmployee.getEmail());
                     existingEmployee.setPosition(updatedEmployee.getPosition());
+                    if (updatedEmployee.getDepartment() != null) {
+
+                        existingEmployee.setDepartment(updatedEmployee.getDepartment());
+                    }
                     return ResponseEntity.ok(employeeService.saveEmployee(existingEmployee));
                 })
                 .orElse(ResponseEntity.notFound().build());
