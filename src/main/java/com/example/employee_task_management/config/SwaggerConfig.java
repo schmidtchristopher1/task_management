@@ -2,8 +2,6 @@ package com.example.employee_task_management.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.security.SecurityRequirement;
-import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,10 +15,17 @@ public class SwaggerConfig {
                         .title("Employee Task Management API")
                         .description("API documentation for managing employees and tasks")
                         .version("1.0"))
-                .addSecurityItem(new SecurityRequirement().addList("basicAuth"))
                 .components(new io.swagger.v3.oas.models.Components()
-                        .addSecuritySchemes("basicAuth", new SecurityScheme()
-                                .type(SecurityScheme.Type.HTTP)
-                                .scheme("basic")));
+                        .addSchemas("Employee", new io.swagger.v3.oas.models.media.Schema()
+                                .description("Employee model")
+                                .addProperties("id", new io.swagger.v3.oas.models.media.IntegerSchema())
+                                .addProperties("name", new io.swagger.v3.oas.models.media.StringSchema())
+                                .addProperties("email", new io.swagger.v3.oas.models.media.StringSchema())
+                                .addProperties("tasks", new io.swagger.v3.oas.models.media.ArraySchema()
+                                        .items(new io.swagger.v3.oas.models.media.Schema()
+                                                .description("Task model")
+                                                .addProperties("id", new io.swagger.v3.oas.models.media.IntegerSchema())
+                                                .addProperties("title", new io.swagger.v3.oas.models.media.StringSchema())
+                                                .addProperties("description", new io.swagger.v3.oas.models.media.StringSchema())))));
     }
 }
