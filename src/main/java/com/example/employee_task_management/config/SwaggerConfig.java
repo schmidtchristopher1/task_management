@@ -16,16 +16,16 @@ public class SwaggerConfig {
                         .description("API documentation for managing employees and tasks")
                         .version("1.0"))
                 .components(new io.swagger.v3.oas.models.Components()
-                        .addSchemas("Employee", new io.swagger.v3.oas.models.media.Schema()
+                        .addSchemas("Employee", new io.swagger.v3.oas.models.media.Schema<Object>()
                                 .description("Employee model")
-                                .addProperties("id", new io.swagger.v3.oas.models.media.IntegerSchema())
-                                .addProperties("name", new io.swagger.v3.oas.models.media.StringSchema())
-                                .addProperties("email", new io.swagger.v3.oas.models.media.StringSchema())
-                                .addProperties("tasks", new io.swagger.v3.oas.models.media.ArraySchema()
-                                        .items(new io.swagger.v3.oas.models.media.Schema()
+                                .addProperty("id", new io.swagger.v3.oas.models.media.IntegerSchema())
+                                .addProperty("name", new io.swagger.v3.oas.models.media.StringSchema())
+                                .addProperty("email", new io.swagger.v3.oas.models.media.StringSchema())
+                                .addProperty("tasks", new io.swagger.v3.oas.models.media.ArraySchema()
+                                        .items(new io.swagger.v3.oas.models.media.Schema<Object>()
                                                 .description("Task model")
-                                                .addProperties("id", new io.swagger.v3.oas.models.media.IntegerSchema())
-                                                .addProperties("title", new io.swagger.v3.oas.models.media.StringSchema())
-                                                .addProperties("description", new io.swagger.v3.oas.models.media.StringSchema())))));
+                                                .addProperty("id", new io.swagger.v3.oas.models.media.IntegerSchema())
+                                                .addProperty("title", new io.swagger.v3.oas.models.media.StringSchema())
+                                                .addProperty("description", new io.swagger.v3.oas.models.media.StringSchema())))));
     }
 }
